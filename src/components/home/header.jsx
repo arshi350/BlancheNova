@@ -3,10 +3,10 @@ import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Menu, X, ChevronDown, Sparkles, Cpu, Code, Users, Mail, Home, BookOpen, Bot, Palette, Server } from 'lucide-react';
 
-export function Header() {
+export function Header({ onNavigate }) {
     const [isScrolled, setIsScrolled] = useState(false);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-    const [activeLink, setActiveLink] = useState('accueil');
+    const [activeLink, setActiveLink] = useState('Accueil');
 
     // Détection du scroll pour changer le style du header
     useEffect(() => {
@@ -18,13 +18,13 @@ export function Header() {
     }, []);
 
     const navLinks = [
-        { name: 'Accueil', href: '#accueil', icon: <Home className="w-4 h-4" /> },
-        { name: 'Académie IA', href: '#academie-ia', icon: <BookOpen className="w-4 h-4" /> },
-        { name: 'Automatisation', href: '#automatisation', icon: <Bot className="w-4 h-4" /> },
-        { name: 'IA Créative', href: '#ia-creative', icon: <Palette className="w-4 h-4" /> },
-        { name: 'Services IT', href: '#services-it', icon: <Server className="w-4 h-4" /> },
-        { name: 'Stage', href: '#stage', icon: <Users className="w-4 h-4" /> },
-        { name: 'Contact', href: '#contact', icon: <Mail className="w-4 h-4" /> }
+        { name: 'Accueil', id: 'accueil', icon: <Home className="w-4 h-4" /> },
+        { name: 'Académie IA', id: 'academie-ia', icon: <BookOpen className="w-4 h-4" /> },
+        { name: 'Automatisation', id: 'automatisation', icon: <Bot className="w-4 h-4" /> },
+        { name: 'IA Créative', id: 'ia-creative', icon: <Palette className="w-4 h-4" /> },
+        { name: 'Services IT', id: 'services-it', icon: <Server className="w-4 h-4" /> },
+        { name: 'Stage', id: 'stage', icon: <Users className="w-4 h-4" /> },
+        { name: 'Contact', id: 'contact', icon: <Mail className="w-4 h-4" /> }
     ];
 
     return (
@@ -103,23 +103,24 @@ export function Header() {
                                     animate={{ opacity: 1, y: 0 }}
                                     transition={{ delay: index * 0.1 }}
                                 >
-                                    <a
-                                        href={link.href}
-                                        onClick={() => setActiveLink(link.name)}
+                                    <button
+                                        type="button"
+                                        onClick={() => {
+                                            setActiveLink(link.name);
+                                            if (onNavigate) onNavigate(link.id);
+                                        }}
                                         className={`relative group px-4 py-2 rounded-lg flex items-center gap-2 transition-all duration-300 ${
                                             activeLink === link.name
-                                                ? 'text-blue-600 bg-blue-50'
+                                                ? 'text-blue-600 bg-blue-50 '
                                                 : 'text-gray-700 hover:text-blue-600 hover:bg-gray-50'
                                         }`}
                                     >
                                         <span className="text-blue-500">{link.icon}</span>
                                         <span className="font-medium">{link.name}</span>
-                                        
-                                        {/* Indicateur de survol */}
                                         <motion.span
                                             className="absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-blue-500 to-purple-500 scale-x-0 group-hover:scale-x-100 transition-transform origin-left"
                                         />
-                                    </a>
+                                    </button>
                                 </motion.li>
                             ))}
                         </ul>
@@ -175,11 +176,12 @@ export function Header() {
                                     animate={{ x: 0, opacity: 1 }}
                                     transition={{ delay: index * 0.05 }}
                                 >
-                                    <a
-                                        href={link.href}
+                                    <button
+                                        type="button"
                                         onClick={() => {
                                             setActiveLink(link.name);
                                             setIsMobileMenuOpen(false);
+                                            if (onNavigate) onNavigate(link.id);
                                         }}
                                         className={`flex items-center gap-3 px-4 py-3 rounded-lg transition-all duration-300 ${
                                             activeLink === link.name
@@ -194,7 +196,7 @@ export function Header() {
                                                 Nouveau
                                             </span>
                                         )}
-                                    </a>
+                                    </button>
                                 </motion.li>
                             ))}
                         </ul>

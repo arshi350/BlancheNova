@@ -83,7 +83,7 @@ export function Expertise() {
     };
 
     return (
-        <section className="relative py-20 overflow-hidden bg-gradient-to-b from-white to-gray-50">
+        <section className="relative py-20 overflow-hidden bg-gradient-to-br from-blue-50 via-white to-purple-50">
             {/* Éléments décoratifs */}
             <div className="absolute inset-0 overflow-hidden">
                 <div className="absolute -top-40 -right-40 w-80 h-80 bg-blue-200 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob"></div>

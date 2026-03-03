@@ -9,15 +9,11 @@ export function Home() {
     return (
         <>
             <section className="bg-gray-100">
-                <header><Header /></header>
                 <section >
                     <Hero/>
                     <AboutUs/>
                     <Expertise/>
                 </section>
-                <footer>
-                    <Footer />
-                </footer>
             </section>
         </>
     )
