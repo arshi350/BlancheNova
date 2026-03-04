@@ -278,39 +278,44 @@ export function ServicesIT() {
     const getColorClasses = (color, isHovered = false) => {
         const colors = {
             blue: {
-                text: isHovered ? 'text-white' : 'text-blue-600',
+                text: 'text-blue-600',
                 bg: isHovered ? 'bg-blue-600' : 'bg-blue-100',
                 border: 'border-blue-200',
                 gradient: 'from-blue-600 to-indigo-600',
-                light: 'bg-blue-50'
+                light: 'bg-blue-50',
+                transition: "transition-colors duration-300"
             },
             green: {
-                text: isHovered ? 'text-white' : 'text-green-600',
+                text: 'text-green-600',
                 bg: isHovered ? 'bg-green-600' : 'bg-green-100',
                 border: 'border-green-200',
                 gradient: 'from-green-600 to-emerald-600',
-                light: 'bg-green-50'
+                light: 'bg-green-50',
+                transition: "transition-colors duration-300"
             },
             purple: {
-                text: isHovered ? 'text-white' : 'text-purple-600',
+                text:  'text-purple-600',
                 bg: isHovered ? 'bg-purple-600' : 'bg-purple-100',
                 border: 'border-purple-200',
                 gradient: 'from-purple-600 to-pink-600',
-                light: 'bg-purple-50'
+                light: 'bg-purple-50',
+                transition: "transition-colors duration-300"
             },
             orange: {
-                text: isHovered ? 'text-white' : 'text-orange-600',
+                text:  'text-orange-600',
                 bg: isHovered ? 'bg-orange-600' : 'bg-orange-100',
                 border: 'border-orange-200',
                 gradient: 'from-orange-600 to-red-600',
-                light: 'bg-orange-50'
+                light: 'bg-orange-50',
+                transition: "transition-colors duration-300"
             },
             red: {
-                text: isHovered ? 'text-white' : 'text-red-600',
+                text: 'text-red-600',
                 bg: isHovered ? 'bg-red-600' : 'bg-red-100',
                 border: 'border-red-200',
                 gradient: 'from-red-600 to-rose-600',
-                light: 'bg-red-50'
+                light: 'bg-red-50',
+                transition: "transition-colors duration-300"
             }
         };
         return colors[color] || colors.blue;
@@ -326,7 +331,7 @@ export function ServicesIT() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.5 }}
-            className="min-h-screen bg-gradient-to-b from-gray-50 to-white"
+            className="min-h-screen bg-gradient-to-b from-gray-50 pt-10 to-white"
         >
             {/* Hero Section avec effet de réseau animé */}
             <motion.div 
@@ -538,7 +543,7 @@ export function ServicesIT() {
                                     whileTap="tap"
                                     onMouseEnter={() => setHoveredId(service.id)}
                                     onMouseLeave={() => setHoveredId(null)}
-                                    className="group relative bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden cursor-pointer"
+                                    className={`group relative ${colors.light} rounded-2xl shadow-lg  hover:shadow-2xl transition-all duration-300 overflow-hidden cursor-pointer`}
                                 >
                                     {/* Effet de brillance */}
                                     <motion.div
@@ -550,21 +555,21 @@ export function ServicesIT() {
 
                                     {/* Image de fond avec overlay */}
                                     <motion.div 
-                                        className={`absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 ${service.bgImage}`}
+                                        className={`absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 ${colors.light}`}
                                         initial={{ opacity: 0 }}
                                         animate={{ opacity: isHovered ? 1 : 0 }}
                                         transition={{ duration: 0.5 }}
                                     />
-                                    
+
                                     {/* Barre de progression au survol */}
                                     <motion.div 
-                                        className={`absolute top-0 left-0 h-1 bg-gradient-to-r ${service.gradient}`}
+                                        className={`absolute top-0 left-0 h-1 bg-gradient-to-r ${colors.gradient}`}
                                         initial={{ width: "0%" }}
                                         animate={{ width: isHovered ? "100%" : "0%" }}
                                         transition={{ duration: 0.7 }}
                                     />
 
-                                    <div className="relative p-8">
+                                    <div className={`relative p-8 ${colors.bg}`}>
                                         {/* En-tête avec icône */}
                                         <div className="flex items-start justify-between mb-6">
                                             <motion.div 
@@ -574,11 +579,8 @@ export function ServicesIT() {
                                                 animate="visible"
                                                 whileHover="hover"
                                             >
-                                                <Icon className={`w-8 h-8 transition-colors duration-300 ${
-                                                    isHovered ? 'text-white' : colors.text
-                                                }`} />
+                                                <Icon className={`w-8 h-8 transition-colors duration-300 ${colors.text}`} />
                                             </motion.div>
-                                            
                                             {/* Badge stat */}
                                             <motion.span 
                                                 whileHover={{ scale: 1.05 }}
@@ -876,7 +878,7 @@ export function ServicesIT() {
                 </motion.div>
 
                 {/* Section témoignages */}
-                <motion.div 
+                {/* <motion.div 
                     initial={{ y: 50, opacity: 0 }}
                     whileInView={{ y: 0, opacity: 1 }}
                     viewport={{ once: true }}
@@ -909,7 +911,7 @@ export function ServicesIT() {
                             </motion.div>
                         ))}
                     </div>
-                </motion.div>
+                </motion.div> */}
             </div>
         </motion.div>
     );

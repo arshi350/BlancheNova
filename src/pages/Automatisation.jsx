@@ -406,9 +406,7 @@ export function Automatisation() {
                                             animate="visible"
                                             whileHover="hover"
                                         >
-                                            <IconComponent className={`w-8 h-8 transition-colors duration-300 ${
-                                                isHovered ? 'text-white' : `text-${service.color.split('-')[1]}-600`
-                                            }`} />
+                                            <IconComponent className={`w-8 h-8 text-${service.color.split('-')[1]}-600`} />
                                         </motion.div>
 
                                         {/* Titre et description */}
@@ -537,36 +535,37 @@ export function Automatisation() {
                             comment l'automatisation peut transformer votre activité.
                         </motion.p>
                         
-                        <motion.button 
-                            whileHover={{ scale: 1.05, y: -5 }}
-                            whileTap={{ scale: 0.95 }}
-                            className="group relative bg-white text-blue-600 px-10 py-4 rounded-full text-xl font-semibold hover:bg-gray-100 transform transition-all duration-300 shadow-xl hover:shadow-2xl inline-flex items-center gap-3 overflow-hidden"
-                        >
-                            {/* Effet de brillance sur le bouton */}
-                            <motion.div
-                                className="absolute inset-0 bg-gradient-to-r from-transparent via-blue-200 to-transparent"
-                                initial={{ x: "-100%" }}
-                                animate={{ x: "100%" }}
-                                transition={{
-                                    repeat: Infinity,
-                                    duration: 2,
-                                    ease: "linear",
-                                    repeatDelay: 1
-                                }}
-                            />
-                            <span className="relative">Demander un audit gratuit</span>
-                            <motion.div
-                                animate={{ x: [0, 5, 0] }}
-                                transition={{
-                                    duration: 1.5,
-                                    repeat: Infinity,
-                                    ease: "easeInOut"
-                                }}
+                        <a href="https://wa.me/237696185770?text=Bonjour%2C%20je%20souhaite%20demander%20un%20audit%20gratuit%20de%20mon%20entreprise." target="_blank" rel="noopener noreferrer">
+                            <motion.button 
+                                whileHover={{ scale: 1.05, y: -5 }}
+                                whileTap={{ scale: 0.95 }}
+                                className="group relative bg-white text-blue-600 px-10 py-4 rounded-full text-xl font-semibold hover:bg-gray-100 transform transition-all duration-300 shadow-xl hover:shadow-2xl inline-flex items-center gap-3 overflow-hidden"
                             >
-                                <ArrowRight className="w-6 h-6" />
-                            </motion.div>
-                        </motion.button>
-
+                                {/* Effet de brillance sur le bouton */}
+                                <motion.div
+                                    className="absolute inset-0 bg-gradient-to-r from-transparent via-blue-200 to-transparent"
+                                    initial={{ x: "-100%" }}
+                                    animate={{ x: "100%" }}
+                                    transition={{
+                                        repeat: Infinity,
+                                        duration: 2,
+                                        ease: "linear",
+                                        repeatDelay: 1
+                                    }}
+                                />
+                                <span className="relative">Demander un audit gratuit</span>
+                                <motion.div
+                                    animate={{ x: [0, 5, 0] }}
+                                    transition={{
+                                        duration: 1.5,
+                                        repeat: Infinity,
+                                        ease: "easeInOut"
+                                    }}
+                                >
+                                    <ArrowRight className="w-6 h-6" />
+                                </motion.div>
+                            </motion.button>
+                        </a>
                         <motion.p 
                             initial={{ opacity: 0 }}
                             whileInView={{ opacity: 1 }}

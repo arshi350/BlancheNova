@@ -276,56 +276,56 @@ export function Academie() {
         const colors = {
             blue: {
                 bg: isHovered ? 'bg-blue-600' : 'bg-blue-500',
-                light: 'bg-blue-50',
+                light: isHovered ? 'bg-blue-800':' bg-blue-50',
                 text: isHovered ? 'text-white' : 'text-blue-600',
                 border: 'border-blue-200',
                 gradient: 'from-blue-500 to-blue-600'
             },
             purple: {
                 bg: isHovered ? 'bg-purple-600' : 'bg-purple-500',
-                light: 'bg-purple-50',
+                light: isHovered ? 'bg-purple-800':' bg-purple-50',
                 text: isHovered ? 'text-white' : 'text-purple-600',
                 border: 'border-purple-200',
                 gradient: 'from-purple-500 to-purple-600'
             },
             green: {
                 bg: isHovered ? 'bg-green-600' : 'bg-green-500',
-                light: 'bg-green-50',
+                light: isHovered ? 'bg-green-800':' bg-green-50',
                 text: isHovered ? 'text-white' : 'text-green-600',
                 border: 'border-green-200',
                 gradient: 'from-green-500 to-green-600'
             },
             orange: {
                 bg: isHovered ? 'bg-orange-600' : 'bg-orange-500',
-                light: 'bg-orange-50',
+                light: isHovered ? 'bg-orange-800':' bg-orange-50',
                 text: isHovered ? 'text-white' : 'text-orange-600',
                 border: 'border-orange-200',
                 gradient: 'from-orange-500 to-orange-600'
             },
             red: {
                 bg: isHovered ? 'bg-red-600' : 'bg-red-500',
-                light: 'bg-red-50',
+                light: isHovered ? 'bg-red-800':' bg-red-50',
                 text: isHovered ? 'text-white' : 'text-red-600',
                 border: 'border-red-200',
                 gradient: 'from-red-500 to-red-600'
             },
             indigo: {
                 bg: isHovered ? 'bg-indigo-600' : 'bg-indigo-500',
-                light: 'bg-indigo-50',
+                light: isHovered ? 'bg-indigo-800':' bg-indigo-50',
                 text: isHovered ? 'text-white' : 'text-indigo-600',
                 border: 'border-indigo-200',
                 gradient: 'from-indigo-500 to-indigo-600'
             },
             emerald: {
                 bg: isHovered ? 'bg-emerald-600' : 'bg-emerald-500',
-                light: 'bg-emerald-50',
+                light: isHovered ? 'bg-emerald-800':' bg-emerald-50',
                 text: isHovered ? 'text-white' : 'text-emerald-600',
                 border: 'border-emerald-200',
                 gradient: 'from-emerald-500 to-emerald-600'
             },
             yellow: {
                 bg: isHovered ? 'bg-yellow-600' : 'bg-yellow-500',
-                light: 'bg-yellow-50',
+                light: isHovered ? 'bg-yellow-800':' bg-yellow-50',
                 text: isHovered ? 'text-white' : 'text-yellow-600',
                 border: 'border-yellow-200',
                 gradient: 'from-yellow-500 to-yellow-600'
@@ -340,6 +340,7 @@ export function Academie() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.5 }}
+            className='py-10'
         >
             {/* Hero Section avec animations améliorées */}
             <motion.div 
@@ -1023,6 +1024,7 @@ export function Academie() {
                     transition={{ duration: 0.7 }}
                     className="text-center mt-16 mb-20"
                 >
+                    <a href="https://wa.me/237696185770?text=Bonjour%2C%20je%20souhaite%20m'inscrire%20à%20la%20prochaine%20session%20de%20la%20formation%20IA%20de%20BlancheNova%20Tech." target="_blank" rel="noopener noreferrer">
                     <motion.button 
                         whileHover={{ scale: 1.05, y: -5 }}
                         whileTap={{ scale: 0.95 }}
@@ -1040,7 +1042,7 @@ export function Academie() {
                                 repeatDelay: 1
                             }}
                         />
-                        <span>Rejoindre la prochaine cohorte</span>
+                        <span>Rejoindre la prochaine session</span>
                         <motion.div
                             animate={{ x: [0, 5, 0] }}
                             transition={{
@@ -1052,7 +1054,7 @@ export function Academie() {
                             <ArrowRight className="w-5 h-5" />
                         </motion.div>
                     </motion.button>
-                    
+                    </a>
                     <motion.p 
                         initial={{ opacity: 0 }}
                         whileInView={{ opacity: 1 }}

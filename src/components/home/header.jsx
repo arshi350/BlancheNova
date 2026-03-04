@@ -8,6 +8,11 @@ export function Header({ onNavigate }) {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const [activeLink, setActiveLink] = useState('Accueil');
 
+    // Permet de mettre à jour activeLink depuis l'extérieur
+    useEffect(() => {
+        window.setActiveLink = setActiveLink;
+    }, []);
+
     // Détection du scroll pour changer le style du header
     useEffect(() => {
         const handleScroll = () => {

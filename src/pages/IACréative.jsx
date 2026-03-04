@@ -435,9 +435,7 @@ export function IaCreative() {
                                             animate="visible"
                                             whileHover="hover"
                                         >
-                                            <Icon className={`w-8 h-8 transition-colors duration-300 ${
-                                                isActive ? 'text-white' : `text-${service.color.split('-')[1]}-600`
-                                            }`} />
+                                            <Icon className={`w-8 h-8 text-${service.color.split('-')[1]}-600`} />
                                         </motion.div>
                                         <motion.span 
                                             whileHover={{ scale: 1.05 }}

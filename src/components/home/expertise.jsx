@@ -13,7 +13,7 @@ import {
   BookOpen
 } from 'lucide-react';
 
-export function Expertise() {
+export function Expertise({ onNavigate }) {
     const poles = [
         {
             id: 1,
@@ -22,6 +22,7 @@ export function Expertise() {
             icon: <GraduationCap className="w-8 h-8" />,
             color: "from-blue-500 to-cyan-500",
             bgLight: "bg-blue-50",
+            iconeColor: "text-blue-600",
             link: "#academie-ia"
         },
         {
@@ -31,6 +32,7 @@ export function Expertise() {
             icon: <Bot className="w-8 h-8" />,
             color: "from-green-500 to-emerald-500",
             bgLight: "bg-green-50",
+            iconeColor: "text-green-600",
             link: "#automatisation"
         },
         {
@@ -40,6 +42,7 @@ export function Expertise() {
             icon: <Palette className="w-8 h-8" />,
             color: "from-purple-500 to-pink-500",
             bgLight: "bg-purple-50",
+            iconeColor: "text-purple-600",
             link: "#ia-creative"
         },
         {
@@ -49,6 +52,7 @@ export function Expertise() {
             icon: <Server className="w-8 h-8" />,
             color: "from-orange-500 to-red-500",
             bgLight: "bg-orange-50",
+            iconeColor: "text-orange-600",
             link: "#services-it"
         },
         {
@@ -58,6 +62,7 @@ export function Expertise() {
             icon: <Users className="w-8 h-8" />,
             color: "from-indigo-500 to-purple-500",
             bgLight: "bg-indigo-50",
+            iconeColor: "text-indigo-600",
             link: "#stage"
         }
     ];
@@ -145,7 +150,7 @@ export function Expertise() {
                                         transition={{ type: "spring", stiffness: 300 }}
                                         className={`w-16 h-16 rounded-2xl ${pole.bgLight} flex items-center justify-center group-hover:shadow-lg transition-all duration-300`}
                                     >
-                                        <div className={`text-transparent bg-gradient-to-r ${pole.color} bg-clip-text`}>
+                                        <div className={`${pole.iconeColor} bg-gradient-to-r ${pole.color} bg-clip-text`}>
                                             {pole.icon}
                                         </div>
                                     </motion.div>
@@ -161,17 +166,32 @@ export function Expertise() {
                                 </p>
 
                                 {/* Bouton "En savoir plus" */}
-                                <motion.a
-                                    href={pole.link}
+                                <motion.button
+                                    type="button"
                                     whileHover={{ x: 5 }}
-                                    className={`inline-flex items-center gap-2 text-transparent bg-gradient-to-r ${pole.color} bg-clip-text font-semibold group/btn`}
+                                    className={`inline-flex items-center gap-2 text-transparent bg-gradient-to-r ${pole.color} bg-clip-text font-semibold group/btn relative`}
+                                    onClick={() => {
+                                        const sectionId = pole.link.replace('#', '');
+                                        if (onNavigate) onNavigate(sectionId);
+                                        // Met à jour le header avec le nom exact du lien
+                                        const headerLinks = [
+                                            { id: 'accueil', name: 'Accueil' },
+                                            { id: 'academie-ia', name: 'Académie IA' },
+                                            { id: 'automatisation', name: 'Automatisation' },
+                                            { id: 'ia-creative', name: 'IA Créative' },
+                                            { id: 'services-it', name: 'Services IT' },
+                                            { id: 'stage', name: 'Stage' },
+                                            { id: 'contact', name: 'Contact' }
+                                        ];
+                                        const found = headerLinks.find(l => l.id === sectionId);
+                                        if (window.setActiveLink && found) window.setActiveLink(found.name);
+                                    }}
                                 >
                                     <span>En savoir plus</span>
                                     <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
-                                    
                                     {/* Ligne animée sous le bouton */}
                                     <span className={`absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r ${pole.color} group-hover/btn:w-full transition-all duration-300`}></span>
-                                </motion.a>
+                                </motion.button>
                             </div>
 
                             {/* Effet de survol avec pattern */}

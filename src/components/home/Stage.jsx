@@ -108,10 +108,10 @@ export function Stage() {
     ];
 
     const stats = [
-        { icon: Users, value: "150+", label: "Stagiaires formés", color: "text-blue-600" },
-        { icon: Trophy, value: "92%", label: "Taux d'embauche", color: "text-green-600" },
-        { icon: Award, value: "5/5", label: "Satisfaction", color: "text-purple-600" },
-        { icon: Globe, value: "10+", label: "Nationalités", color: "text-orange-600" }
+        { icon: Users, value: "150+", label: "Stagiaires formés", color: "text-blue-100" },
+        { icon: Trophy, value: "92%", label: "Taux d'embauche", color: "text-green-100" },
+        { icon: Award, value: "5/5", label: "Satisfaction", color: "text-purple-100" },
+        { icon: Globe, value: "10+", label: "Nationalités", color: "text-orange-100" }
     ];
 
     const benefits = [
@@ -270,28 +270,28 @@ export function Stage() {
     const getColorClasses = (color, isHovered = false) => {
         const colors = {
             purple: {
-                text: isHovered ? 'text-white' : 'text-purple-600',
+                text: isHovered ? 'text-purple-600' : 'text-purple-600',
                 bg: isHovered ? 'bg-purple-600' : 'bg-purple-100',
                 light: 'bg-purple-50',
                 border: 'border-purple-200',
                 gradient: 'from-purple-600 to-indigo-600'
             },
             blue: {
-                text: isHovered ? 'text-white' : 'text-blue-600',
+                text: isHovered ? 'text-blue-600' : 'text-blue-600',
                 bg: isHovered ? 'bg-blue-600' : 'bg-blue-100',
                 light: 'bg-blue-50',
                 border: 'border-blue-200',
                 gradient: 'from-blue-600 to-cyan-600'
             },
             green: {
-                text: isHovered ? 'text-white' : 'text-green-600',
+                text: isHovered ? 'text-green-600' : 'text-green-600',
                 bg: isHovered ? 'bg-green-600' : 'bg-green-100',
                 light: 'bg-green-50',
                 border: 'border-green-200',
                 gradient: 'from-green-600 to-emerald-600'
             },
             orange: {
-                text: isHovered ? 'text-white' : 'text-orange-600',
+                text: isHovered ? 'text-orange-600' : 'text-orange-600',
                 bg: isHovered ? 'bg-orange-600' : 'bg-orange-100',
                 light: 'bg-orange-50',
                 border: 'border-orange-200',
@@ -311,7 +311,7 @@ export function Stage() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.5 }}
-            className="min-h-screen bg-gradient-to-b from-indigo-50 via-white to-white"
+            className="min-h-screen bg-gradient-to-b py-10 from-indigo-50 via-white to-white"
         >
             {/* Hero Section avec animations */}
             <motion.div 
@@ -567,8 +567,7 @@ export function Stage() {
                                                 animate="visible"
                                                 whileHover="hover"
                                             >
-                                                <Icon className={`w-8 h-8 transition-colors duration-300 ${
-                                                    isHovered ? 'text-white' : colors.text
+                                                <Icon className={`w-8 h-8 transition-colors duration-300 ${colors.text}
                                                 }`} />
                                             </motion.div>
                                             <div>
@@ -727,7 +726,7 @@ export function Stage() {
                 </motion.div>
 
                 {/* Section Témoignages avec animations */}
-                <motion.div 
+                {/* <motion.div 
                     initial={{ y: 50, opacity: 0 }}
                     whileInView={{ y: 0, opacity: 1 }}
                     viewport={{ once: true, margin: "-100px" }}
@@ -735,7 +734,7 @@ export function Stage() {
                     className="mb-16"
                 >
                     <div className="bg-gradient-to-r from-indigo-100 to-purple-100 rounded-3xl p-8 md:p-12 relative overflow-hidden">
-                        {/* Particules décoratives */}
+                       
                         {[...Array(10)].map((_, i) => (
                             <motion.div
                                 key={i}
@@ -820,7 +819,7 @@ export function Stage() {
                             ))}
                         </div>
                     </div>
-                </motion.div>
+                </motion.div> */}
 
                 {/* CTA Final avec animations */}
                 <motion.div 
@@ -830,37 +829,38 @@ export function Stage() {
                     transition={{ duration: 0.7 }}
                     className="text-center mb-20"
                 >
-                    <motion.button 
-                        whileHover={{ scale: 1.05, y: -5 }}
-                        whileTap={{ scale: 0.95 }}
-                        className="group relative inline-flex items-center gap-3 bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white font-bold py-5 px-12 rounded-full shadow-xl hover:shadow-2xl transform transition-all duration-300 text-xl overflow-hidden"
-                    >
-                        {/* Effet de brillance */}
-                        <motion.div
-                            className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent"
-                            initial={{ x: "-100%" }}
-                            animate={{ x: "100%" }}
-                            transition={{
-                                repeat: Infinity,
-                                duration: 2,
-                                ease: "linear",
-                                repeatDelay: 1
-                            }}
-                        />
-                        <Heart className="w-6 h-6 relative" />
-                        <span className="relative">Postuler au programme de stage</span>
-                        <motion.div
-                            animate={{ x: [0, 5, 0] }}
-                            transition={{
-                                duration: 1.5,
-                                repeat: Infinity,
-                                ease: "easeInOut"
-                            }}
+                    <a href="https://wa.me/237696185770?text=Bonjour%2C%20je%20souhaite%20m'inscrire%20au%20programme%20de%20stage%20de%20BlancheNova%20Tech." target="_blank" rel="noopener noreferrer">
+                        <motion.button 
+                            whileHover={{ scale: 1.05, y: -5 }}
+                            whileTap={{ scale: 0.95 }}
+                            className="group relative inline-flex items-center gap-3 bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white font-bold py-5 px-12 rounded-full shadow-xl hover:shadow-2xl transform transition-all duration-300 text-xl overflow-hidden"
                         >
-                            <ArrowRight className="w-6 h-6" />
-                        </motion.div>
-                    </motion.button>
-                    
+                            {/* Effet de brillance */}
+                            <motion.div
+                                className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent"
+                                initial={{ x: "-100%" }}
+                                animate={{ x: "100%" }}
+                                transition={{
+                                    repeat: Infinity,
+                                    duration: 2,
+                                    ease: "linear",
+                                    repeatDelay: 1
+                                }}
+                            />
+                            <Heart className="w-6 h-6 relative" />
+                            <span className="relative">Postuler au programme de stage</span>
+                            <motion.div
+                                animate={{ x: [0, 5, 0] }}
+                                transition={{
+                                    duration: 1.5,
+                                    repeat: Infinity,
+                                    ease: "easeInOut"
+                                }}
+                            >
+                                <ArrowRight className="w-6 h-6" />
+                            </motion.div>
+                        </motion.button>
+                    </a>
                     <motion.p 
                         initial={{ opacity: 0 }}
                         whileInView={{ opacity: 1 }}

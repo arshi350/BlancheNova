@@ -5,14 +5,14 @@ import { AboutUs } from "../components/home/aboutUs"
 import { Expertise } from "../components/home/expertise"
 import { Footer } from "../components/home/footer"
 
-export function Home() {
+export function Home({ onNavigate }) {
     return (
         <>
             <section className="bg-gray-100">
                 <section >
                     <Hero/>
                     <AboutUs/>
-                    <Expertise/>
+                    <Expertise onNavigate={onNavigate}/>
                 </section>
             </section>
         </>

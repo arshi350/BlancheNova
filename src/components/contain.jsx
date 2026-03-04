@@ -13,8 +13,11 @@ import { useState } from "react";
 
 
 export function Contain() {
+
+    const [activeSection, setActiveSection] = useState('accueil');
+
     const sections = [
-        { id: 'accueil', component: <Home /> },
+        { id: 'accueil', component: <Home onNavigate={setActiveSection} /> },
         { id: 'academie-ia', component: <Academie /> },
         { id: 'automatisation', component: <Automatisation /> },
         { id: 'ia-creative', component: <IaCreative /> },
@@ -22,8 +25,7 @@ export function Contain() {
         { id: 'stage', component: <Stage /> },
         { id: 'contact', component: <Contact /> },
     ];
-
-    const [activeSection, setActiveSection] = useState('accueil');
+    
     return (
         <>
            <section className="bg-gradient-to-br from-blue-50 via-white to-purple-50">
