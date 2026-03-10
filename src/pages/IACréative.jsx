@@ -526,12 +526,13 @@ export function IaCreative() {
                                     </motion.div>
 
                                     {/* Bouton CTA avec animation */}
-                                    <motion.button 
+                                    <motion.button
                                         className={`inline-flex items-center gap-2 font-semibold transition-all duration-300 group/btn ${
                                             isActive ? 'text-white' : `text-${service.color.split('-')[1]}-600`
                                         }`}
                                         whileHover={{ x: 5 }}
                                         whileTap={{ scale: 0.95 }}
+                                        onClick={() => window.open('https://wa.me/237677843119', '_blank')}
                                     >
                                         Découvrir la solution
                                         <ArrowRight className="w-5 h-5 group-hover/btn:translate-x-2 transition-transform" />
@@ -672,6 +673,7 @@ export function IaCreative() {
                             whileHover={{ scale: 1.05, y: -5 }}
                             whileTap={{ scale: 0.95 }}
                             className="group relative bg-white text-purple-600 px-10 py-4 rounded-full text-xl font-semibold hover:bg-gray-100 transform transition-all duration-300 shadow-xl hover:shadow-2xl inline-flex items-center gap-3 overflow-hidden"
+                            onClick={() => window.open('https://wa.me/237677843119', '_blank')}
                         >
                             {/* Effet de brillance sur le bouton */}
                             <motion.div

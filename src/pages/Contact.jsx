@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+// import emailjs from '@emailjs/browser';
 import {
     Mail,
     Phone,
@@ -23,18 +24,27 @@ import {
     Star,
     Zap
 } from 'lucide-react';
+import { useForm } from '../hooks/useform';
+
 
 export function Contact() {
+    
+    const formRef = useRef();
+
+   const {sendEmail, loading, error, success } = useForm()
+
     const [formData, setFormData] = useState({
-        nom: '',
+        name: '',
         email: '',
-        sujet: '',
+        services: '',
         message: ''
     });
+
     const [formStatus, setFormStatus] = useState(null);
-    const [selectedService, setSelectedService] = useState('');
+    const [service, setservice] = useState('');
     const [hoveredCard, setHoveredCard] = useState(null);
     const [focusedField, setFocusedField] = useState(null);
+    const [emailStatus, setEmailStatus] = useState(null);
 
     const handleChange = (e) => {
         setFormData({
@@ -42,16 +52,53 @@ export function Contact() {
             [e.target.name]: e.target.value
         });
     };
+    // Fonction pour ouvrir le client mail par défaut
+    const openMailClient = (to, subject, body) => {
+        const mailtoLink = `mailto:${to}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+        window.location.href = mailtoLink;
+    };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         setFormStatus('loading');
+        const dataToSend = { ...formData, services: service };
+        try {
+            await sendEmail(dataToSend);
+            if (success) {
+                setFormStatus('success');
+                setFormData({ name: '', email: '', services: '', message: '' });
+                setservice('');
+            } else if (error) {
+                setFormStatus('error');
+            }
+        } catch (err) {
+            setFormStatus('error');
+            console.log(err);
+        }
+        setTimeout(() => setFormStatus(null), 3000);
+    };
+
+    // Fonction pour gérer le clic sur la carte email
+    const handleEmailClick = (e) => {
+        e.preventDefault();
         
-        // Simulation d'envoi
-        setTimeout(() => {
-            setFormStatus('success');
-            setTimeout(() => setFormStatus(null), 3000);
-        }, 1500);
+        const subject = "Demande d'information depuis le site Newsafrix";
+        const body = `Bonjour l'équipe Newsafrix, Je vous contacte suite à ma visite sur votre site web. Cordialement.`;
+        
+        // Ouvrir le client mail par défaut
+        openMailClient('arelletagne@gmail.com', subject, body);
+        
+        // Afficher un message de confirmation
+        setEmailStatus('mailto');
+        setTimeout(() => setEmailStatus(null), 3000);
+    };
+
+    // Fonction alternative pour ouvrir Gmail directement
+    const openGmailCompose = () => {
+        const to = 'arelletagne@gmail.com';
+        const subject = encodeURIComponent("Demande d'information depuis le site Newsafrix");
+        const body = encodeURIComponent(`Bonjour l'équipe Newsafrix, Je vous contacte suite à ma visite sur votre site web. Cordialement.`);
+        window.open(`https://mail.google.com/mail/?view=cm&fs=1&to=${to}&su=${subject}&body=${body}`, '_blank');
     };
 
     const contactInfo = [
@@ -59,28 +106,32 @@ export function Contact() {
             icon: MapPin,
             title: "Adresse",
             content: "Yaoundé, Cameroun",
-            detail: "Quartier Mvan, Rue 3.456",
+            detail: "Quartier Awae,",
             color: "red",
             action: "https://maps.google.com",
-            gradient: "from-red-500 to-pink-500"
+            gradient: "from-red-500 to-pink-500",
+            onClick: () => window.open('https://maps.google.com', '_blank')
         },
         {
             icon: Mail,
             title: "Email",
-            content: "contact@votreentreprise.com",
-            detail: "support@votreentreprise.com",
+            content: "arelletagne@gmail.com",
+            detail: "Cliquez pour nous écrire",
             color: "blue",
-            action: "mailto:contact@votreentreprise.com",
-            gradient: "from-blue-500 to-cyan-500"
+            action: "#", // Changé pour éviter la redirection par défaut
+            gradient: "from-blue-500 to-cyan-500",
+            onClick: handleEmailClick,
+            isMail: true
         },
         {
             icon: Phone,
             title: "WhatsApp",
-            content: "+237 123 456 789",
+            content: "+237 6 77 84 31 19",
             detail: "Disponible 24/7",
             color: "green",
-            action: "https://wa.me/237123456789",
-            gradient: "from-green-500 to-emerald-500"
+            action: "https://wa.me/237677843119",
+            gradient: "from-green-500 to-emerald-500",
+            onClick: () => window.open('https://wa.me/237677843119', '_blank')
         },
         {
             icon: Clock,
@@ -88,7 +139,8 @@ export function Contact() {
             content: "Lun - Ven: 8h - 18h",
             detail: "Sam: 9h - 13h",
             color: "purple",
-            gradient: "from-purple-500 to-indigo-500"
+            gradient: "from-purple-500 to-indigo-500",
+            onClick: null
         }
     ];
 
@@ -109,7 +161,7 @@ export function Contact() {
         "Programme Stage"
     ];
 
-    // Variants d'animation
+    // Variants d'animation (inchangés)
     const containerVariants = {
         hidden: { opacity: 0 },
         visible: {
@@ -242,7 +294,46 @@ export function Contact() {
             transition={{ duration: 0.5 }}
             className="min-h-screen bg-gradient-to-b pt-10 from-red-50 via-white to-white overflow-hidden"
         >
-            {/* Particules décoratives */}
+            {/* Notifications Email */}
+            <AnimatePresence>
+                {emailStatus === 'mailto' && (
+                    <motion.div
+                        initial={{ opacity: 0, y: -50 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -50 }}
+                        className="fixed top-4 right-4 z-50 bg-blue-50 border border-blue-200 rounded-xl p-4 shadow-lg flex items-center gap-3"
+                    >
+                        <Mail className="w-5 h-5 text-blue-600" />
+                        <p className="text-blue-700">Ouverture du client mail...</p>
+                    </motion.div>
+                )}
+
+                {emailStatus === 'success' && (
+                    <motion.div
+                        initial={{ opacity: 0, y: -50 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -50 }}
+                        className="fixed top-4 right-4 z-50 bg-green-50 border border-green-200 rounded-xl p-4 shadow-lg flex items-center gap-3"
+                    >
+                        <CheckCircle className="w-5 h-5 text-green-600" />
+                        <p className="text-green-700">Email envoyé avec succès !</p>
+                    </motion.div>
+                )}
+
+                {emailStatus === 'error' && (
+                    <motion.div
+                        initial={{ opacity: 0, y: -50 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -50 }}
+                        className="fixed top-4 right-4 z-50 bg-red-50 border border-red-200 rounded-xl p-4 shadow-lg flex items-center gap-3"
+                    >
+                        <AlertCircle className="w-5 h-5 text-red-600" />
+                        <p className="text-red-700">Erreur lors de l'envoi. Veuillez réessayer.</p>
+                    </motion.div>
+                )}
+            </AnimatePresence>
+
+            {/* Particules décoratives (inchangées) */}
             <div className="fixed inset-0 pointer-events-none">
                 {[...Array(30)].map((_, i) => (
                     <motion.div
@@ -268,14 +359,14 @@ export function Contact() {
                 ))}
             </div>
 
-            {/* Hero Section avec animations */}
+            {/* Hero Section (inchangée) */}
             <motion.div 
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.8 }}
                 className="relative overflow-hidden bg-gradient-to-r from-red-600 to-red-800 py-20"
             >
-                {/* Formes décoratives animées */}
+                {/* ... (contenu inchangé) ... */}
                 <motion.div 
                     variants={floatingVariants}
                     initial="initial"
@@ -323,7 +414,6 @@ export function Contact() {
                             Contactez-nous pour toute demande d'information ou de collaboration
                         </motion.p>
                         
-                        {/* Indicateur de disponibilité animé */}
                         <motion.div 
                             initial={{ scale: 0 }}
                             animate={{ scale: 1 }}
@@ -343,7 +433,7 @@ export function Contact() {
 
             {/* Section Contact principale */}
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-10 relative z-10">
-                {/* Cartes d'information avec animations */}
+                {/* Cartes d'information avec gestion du clic sur email */}
                 <motion.div 
                     variants={containerVariants}
                     initial="hidden"
@@ -352,18 +442,20 @@ export function Contact() {
                 >
                     {contactInfo.map((info, idx) => {
                         const Icon = info.icon;
+                        const isClickable = info.onClick !== null;
+                        
                         return (
-                            <motion.a
+                            <motion.div
                                 key={idx}
-                                href={info.action}
-                                target="_blank"
-                                rel="noopener noreferrer"
                                 variants={cardVariants}
-                                whileHover="hover"
-                                whileTap="tap"
+                                whileHover={isClickable ? "hover" : {}}
+                                whileTap={isClickable ? "tap" : {}}
                                 onMouseEnter={() => setHoveredCard(`info-${idx}`)}
                                 onMouseLeave={() => setHoveredCard(null)}
-                                className="group relative bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 cursor-pointer overflow-hidden"
+                                onClick={info.onClick || undefined}
+                                className={`group relative bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 ${
+                                    isClickable ? 'cursor-pointer' : 'cursor-default'
+                                } overflow-hidden`}
                             >
                                 {/* Effet de brillance */}
                                 <motion.div
@@ -387,6 +479,17 @@ export function Contact() {
                                 <p className="text-gray-600 font-medium">{info.content}</p>
                                 <p className="text-sm text-gray-500 mt-1">{info.detail}</p>
 
+                                {/* Badge "Cliquez pour écrire" pour l'email */}
+                                {info.isMail && (
+                                    <motion.div 
+                                        initial={{ opacity: 0 }}
+                                        animate={{ opacity: 1 }}
+                                        className="absolute top-2 right-2 bg-blue-100 text-blue-600 text-xs px-2 py-1 rounded-full"
+                                    >
+                                        Cliquez pour écrire
+                                    </motion.div>
+                                )}
+
                                 {/* Effet de bordure au survol */}
                                 <motion.div 
                                     className={`absolute bottom-0 left-0 h-1 bg-gradient-to-r ${info.gradient}`}
@@ -394,14 +497,15 @@ export function Contact() {
                                     animate={{ width: hoveredCard === `info-${idx}` ? "100%" : "0%" }}
                                     transition={{ duration: 0.5 }}
                                 />
-                            </motion.a>
+                            </motion.div>
                         );
                     })}
                 </motion.div>
 
-                {/* Formulaire et carte */}
+                {/* Formulaire et carte (inchangé) */}
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-16">
-                    {/* Formulaire de contact avec animations */}
+                    
+                    {/* Formulaire de contact avec EmailJS */}
                     <motion.div 
                         initial={{ x: -50, opacity: 0 }}
                         whileInView={{ x: 0, opacity: 1 }}
@@ -413,7 +517,7 @@ export function Contact() {
                             Envoyez-nous un message
                         </h2>
 
-                        <form onSubmit={handleSubmit} className="space-y-6">
+                        <form ref={formRef} onSubmit={handleSubmit} className="space-y-6">
                             {/* Nom */}
                             <motion.div
                                 variants={formFieldVariants}
@@ -426,7 +530,7 @@ export function Contact() {
                                     <User className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
                                     <input
                                         type="text"
-                                        name="nom"
+                                        name="name"
                                         value={formData.nom}
                                         onChange={handleChange}
                                         onFocus={() => setFocusedField('nom')}
@@ -473,10 +577,11 @@ export function Contact() {
                                 <div className="relative">
                                     <Briefcase className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
                                     <select
-                                        value={selectedService}
-                                        onChange={(e) => setSelectedService(e.target.value)}
+                                        value={service}
+                                        onChange={(e) => setservice(e.target.value)}
                                         onFocus={() => setFocusedField('service')}
                                         onBlur={() => setFocusedField(null)}
+                                        name='object'
                                         className="w-full pl-10 pr-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-red-500 focus:border-transparent transition-all duration-300 appearance-none bg-white"
                                     >
                                         <option value="">Sélectionnez un service</option>
@@ -539,6 +644,18 @@ export function Contact() {
                                         <p className="text-green-700">Message envoyé avec succès ! Nous vous répondrons sous 24h.</p>
                                     </motion.div>
                                 )}
+
+                                {formStatus === 'error' && (
+                                    <motion.div 
+                                        initial={{ opacity: 0, y: -10 }}
+                                        animate={{ opacity: 1, y: 0 }}
+                                        exit={{ opacity: 0 }}
+                                        className="bg-red-50 border border-red-200 rounded-xl p-4 flex items-center gap-3"
+                                    >
+                                        <AlertCircle className="w-5 h-5 text-red-600" />
+                                        <p className="text-red-700">Erreur lors de l'envoi. Veuillez réessayer.</p>
+                                    </motion.div>
+                                )}
                             </AnimatePresence>
 
                             {/* Bouton submit animé */}
@@ -564,7 +681,7 @@ export function Contact() {
                         </form>
                     </motion.div>
 
-                    {/* Sidebar avec animations */}
+                    {/* Sidebar (inchangée) */}
                     <motion.div 
                         initial={{ x: 50, opacity: 0 }}
                         whileInView={{ x: 0, opacity: 1 }}
@@ -572,10 +689,11 @@ export function Contact() {
                         transition={{ duration: 0.5, delay: 0.2 }}
                         className="space-y-6"
                     >
-                        {/* WhatsApp direct animé */}
+                        {/* WhatsApp direct */}
                         <motion.div 
                             whileHover={{ scale: 1.02 }}
-                            className="bg-gradient-to-br from-green-600 to-green-700 rounded-2xl shadow-xl p-6 text-white relative overflow-hidden"
+                            className="bg-gradient-to-br from-green-600 to-green-700 rounded-2xl shadow-xl p-6 text-white relative overflow-hidden cursor-pointer"
+                            onClick={() => window.open('https://wa.me/237677843119', '_blank')}
                         >
                             <motion.div
                                 variants={pulseVariants}
@@ -589,23 +707,21 @@ export function Contact() {
                             <p className="text-white/90 mb-4">
                                 Besoin d'une réponse immédiate ? Contactez-nous sur WhatsApp
                             </p>
-                            <motion.a
-                                href="https://wa.me/237123456789"
-                                target="_blank"
-                                rel="noopener noreferrer"
+                            <motion.div
                                 whileHover={{ x: 5 }}
                                 className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm px-4 py-2 rounded-lg hover:bg-white/30 transition-all duration-300"
                             >
                                 <Phone className="w-4 h-4" />
                                 Démarrer la discussion
                                 <ArrowRight className="w-4 h-4" />
-                            </motion.a>
+                            </motion.div>
                         </motion.div>
 
                         {/* Localisation détaillée */}
                         <motion.div 
                             whileHover={{ y: -5 }}
-                            className="bg-white rounded-2xl shadow-xl p-6"
+                            className="bg-white rounded-2xl shadow-xl p-6 cursor-pointer"
+                            onClick={() => window.open('https://maps.google.com', '_blank')}
                         >
                             <div className="flex items-center gap-3 mb-4">
                                 <motion.div 
@@ -624,19 +740,16 @@ export function Contact() {
                                 Quartier Mvan, Rue 3.456<br />
                                 Immeuble ABC, 3ème étage
                             </p>
-                            <motion.a
-                                href="https://maps.google.com"
-                                target="_blank"
-                                rel="noopener noreferrer"
+                            <motion.div
                                 whileHover={{ x: 5 }}
                                 className="text-red-600 font-medium hover:text-red-700 transition-colors inline-flex items-center gap-1"
                             >
                                 Voir sur Google Maps
                                 <ArrowRight className="w-4 h-4" />
-                            </motion.a>
+                            </motion.div>
                         </motion.div>
 
-                        {/* Réseaux sociaux avec animations */}
+                        {/* Réseaux sociaux */}
                         <motion.div 
                             variants={containerVariants}
                             initial="hidden"
@@ -667,7 +780,7 @@ export function Contact() {
                             </div>
                         </motion.div>
 
-                        {/* Temps de réponse animé */}
+                        {/* Temps de réponse */}
                         <motion.div 
                             whileHover={{ scale: 1.02 }}
                             className="bg-gray-50 rounded-xl p-4 border border-gray-200"
@@ -688,7 +801,7 @@ export function Contact() {
                     </motion.div>
                 </div>
 
-                {/* Carte interactive avec animation */}
+                {/* Carte interactive */}
                 <motion.div 
                     initial={{ y: 50, opacity: 0 }}
                     whileInView={{ y: 0, opacity: 1 }}
@@ -708,13 +821,13 @@ export function Contact() {
                             className="rounded-2xl"
                         ></iframe>
                         
-                        {/* Overlay d'information animé */}
                         <motion.div 
                             initial={{ x: -100, opacity: 0 }}
                             whileInView={{ x: 0, opacity: 1 }}
                             viewport={{ once: true }}
                             transition={{ delay: 0.5 }}
-                            className="absolute bottom-4 left-4 bg-white rounded-lg shadow-lg p-4"
+                            className="absolute bottom-4 left-4 bg-white rounded-lg shadow-lg p-4 cursor-pointer"
+                            onClick={() => window.open('https://maps.google.com', '_blank')}
                         >
                             <div className="flex items-center gap-2">
                                 <MapPin className="w-5 h-5 text-red-600" />
@@ -725,7 +838,7 @@ export function Contact() {
                     </div>
                 </motion.div>
 
-                {/* FAQ rapide avec animations */}
+                {/* FAQ rapide */}
                 <motion.div 
                     initial={{ y: 50, opacity: 0 }}
                     whileInView={{ y: 0, opacity: 1 }}
@@ -770,7 +883,7 @@ export function Contact() {
                     </div>
                 </motion.div>
 
-                {/* Newsletter avec animations */}
+                {/* Newsletter */}
                 <motion.div 
                     initial={{ y: 50, opacity: 0 }}
                     whileInView={{ y: 0, opacity: 1 }}
@@ -778,7 +891,6 @@ export function Contact() {
                     transition={{ duration: 0.7 }}
                     className="bg-gradient-to-r from-red-600 to-red-800 rounded-2xl shadow-xl p-8 mb-16 text-center text-white relative overflow-hidden"
                 >
-                    {/* Éléments décoratifs */}
                     <motion.div
                         variants={floatingVariants}
                         initial="initial"

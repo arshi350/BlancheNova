@@ -9,12 +9,38 @@ import { ServicesIT } from "../pages/ServicesIT";
 import { Stage } from "./home/Stage";
 import { Contact } from "../pages/contact";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 
 export function Contain() {
 
-    const [activeSection, setActiveSection] = useState('accueil');
+    // Synchronisation de la section active avec l'URL (hash)
+    const getInitialSection = () => {
+        if (typeof window !== 'undefined') {
+            const hash = window.location.hash.replace('#', '');
+            return hash || 'accueil';
+        }
+        return 'accueil';
+    };
+    const [activeSection, setActiveSectionState] = useState(getInitialSection());
+
+    // Met à jour l'URL et l'état
+    const setActiveSection = (sectionId) => {
+        setActiveSectionState(sectionId);
+        if (typeof window !== 'undefined') {
+            window.location.hash = sectionId;
+        }
+    };
+
+    // Synchronise l'état avec l'URL lors de l'actualisation ou navigation
+    useEffect(() => {
+        const onHashChange = () => {
+            const hash = window.location.hash.replace('#', '') || 'accueil';
+            setActiveSectionState(hash);
+        };
+        window.addEventListener('hashchange', onHashChange);
+        return () => window.removeEventListener('hashchange', onHashChange);
+    }, []);
 
     const sections = [
         { id: 'accueil', component: <Home onNavigate={setActiveSection} /> },

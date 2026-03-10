@@ -6,11 +6,37 @@ import { Menu, X, ChevronDown, Sparkles, Cpu, Code, Users, Mail, Home, BookOpen,
 export function Header({ onNavigate }) {
     const [isScrolled, setIsScrolled] = useState(false);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-    const [activeLink, setActiveLink] = useState('Accueil');
+    // Synchronise le lien actif avec l'URL hash
+    const navLinks = [
+        { name: 'Accueil', id: 'accueil', icon: <Home className="w-4 h-4" /> },
+        { name: 'Académie IA', id: 'academie-ia', icon: <BookOpen className="w-4 h-4" /> },
+        { name: 'Automatisation', id: 'automatisation', icon: <Bot className="w-4 h-4" /> },
+        { name: 'IA Créative', id: 'ia-creative', icon: <Palette className="w-4 h-4" /> },
+        { name: 'Services IT', id: 'services-it', icon: <Server className="w-4 h-4" /> },
+        { name: 'Stage', id: 'stage', icon: <Users className="w-4 h-4" /> },
+        { name: 'Contact', id: 'contact', icon: <Mail className="w-4 h-4" /> },
+    ];
+    const getInitialActiveLink = () => {
+        if (typeof window !== 'undefined') {
+            const hash = window.location.hash.replace('#', '');
+            const found = navLinks.find(l => l.id === hash);
+            return found ? found.name : 'Accueil';
+        }
+        return 'Accueil';
+    };
+    const [activeLink, setActiveLink] = useState(getInitialActiveLink());
 
-    // Permet de mettre à jour activeLink depuis l'extérieur
+    // Synchronise le lien actif avec le hash de l'URL
     useEffect(() => {
-        window.setActiveLink = setActiveLink;
+        const onHashChange = () => {
+            const hash = window.location.hash.replace('#', '');
+            const found = navLinks.find(l => l.id === hash);
+            setActiveLink(found ? found.name : 'Accueil');
+        };
+        window.addEventListener('hashchange', onHashChange);
+        // Initialisation au chargement
+        onHashChange();
+        return () => window.removeEventListener('hashchange', onHashChange);
     }, []);
 
     // Détection du scroll pour changer le style du header
@@ -22,15 +48,15 @@ export function Header({ onNavigate }) {
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
-    const navLinks = [
-        { name: 'Accueil', id: 'accueil', icon: <Home className="w-4 h-4" /> },
-        { name: 'Académie IA', id: 'academie-ia', icon: <BookOpen className="w-4 h-4" /> },
-        { name: 'Automatisation', id: 'automatisation', icon: <Bot className="w-4 h-4" /> },
-        { name: 'IA Créative', id: 'ia-creative', icon: <Palette className="w-4 h-4" /> },
-        { name: 'Services IT', id: 'services-it', icon: <Server className="w-4 h-4" /> },
-        { name: 'Stage', id: 'stage', icon: <Users className="w-4 h-4" /> },
-        { name: 'Contact', id: 'contact', icon: <Mail className="w-4 h-4" /> }
-    ];
+    // const navLinks = [
+    //     { name: 'Accueil', id: 'accueil', icon: <Home className="w-4 h-4" /> },
+    //     { name: 'Académie IA', id: 'academie-ia', icon: <BookOpen className="w-4 h-4" /> },
+    //     { name: 'Automatisation', id: 'automatisation', icon: <Bot className="w-4 h-4" /> },
+    //     { name: 'IA Créative', id: 'ia-creative', icon: <Palette className="w-4 h-4" /> },
+    //     { name: 'Services IT', id: 'services-it', icon: <Server className="w-4 h-4" /> },
+    //     { name: 'Stage', id: 'stage', icon: <Users className="w-4 h-4" /> },
+    //     { name: 'Contact', id: 'contact', icon: <Mail className="w-4 h-4" /> }
+    // ];
 
     return (
         <motion.header

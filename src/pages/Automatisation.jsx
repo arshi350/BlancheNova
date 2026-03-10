@@ -535,7 +535,7 @@ export function Automatisation() {
                             comment l'automatisation peut transformer votre activité.
                         </motion.p>
                         
-                        <a href="https://wa.me/237696185770?text=Bonjour%2C%20je%20souhaite%20demander%20un%20audit%20gratuit%20de%20mon%20entreprise." target="_blank" rel="noopener noreferrer">
+                        <a href="https://wa.me/+237677843119?text=Bonjour%2C%20je%20souhaite%20demander%20un%20audit%20gratuit%20de%20mon%20entreprise." target="_blank" rel="noopener noreferrer">
                             <motion.button 
                                 whileHover={{ scale: 1.05, y: -5 }}
                                 whileTap={{ scale: 0.95 }}

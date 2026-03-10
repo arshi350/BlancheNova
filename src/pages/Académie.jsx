@@ -710,6 +710,7 @@ export function Academie() {
                                                         }`}
                                                         whileHover={{ x: 5 }}
                                                         whileTap={{ scale: 0.95 }}
+                                                        onClick={() => window.open('https://wa.me/237677843119', '_blank')}
                                                     >
                                                         En savoir plus
                                                         <ChevronRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
@@ -1024,7 +1025,7 @@ export function Academie() {
                     transition={{ duration: 0.7 }}
                     className="text-center mt-16 mb-20"
                 >
-                    <a href="https://wa.me/237696185770?text=Bonjour%2C%20je%20souhaite%20m'inscrire%20à%20la%20prochaine%20session%20de%20la%20formation%20IA%20de%20BlancheNova%20Tech." target="_blank" rel="noopener noreferrer">
+                    <a href="https://wa.me/+237677843119?text=Bonjour%2C%20je%20souhaite%20m'inscrire%20à%20la%20prochaine%20session%20de%20la%20formation%20IA%20de%20BlancheNova%20Tech." target="_blank" rel="noopener noreferrer">
                     <motion.button 
                         whileHover={{ scale: 1.05, y: -5 }}
                         whileTap={{ scale: 0.95 }}
