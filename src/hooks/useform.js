@@ -33,7 +33,7 @@ export function useForm() {
 				email: formData.email,
 				service: formData.services || 'Non spécifié',
 				message: formData.message,
-				to_email: 'arshidesign1@gmail.com',
+				to_email: 'arelletagne@gmail.com',//arelletagne@gmail.com
 				reply_to: formData.email
 			};
 
