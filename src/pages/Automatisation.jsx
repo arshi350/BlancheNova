@@ -208,7 +208,7 @@ export function Automatisation() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.5 }}
-            className="relative py-34 px-4 overflow-hidden"
+            className="relative pt-45 px-4 overflow-hidden"
         >
             {/* Arrière-plan avec effet de vague et particules animées */}
             <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-white to-purple-50" />
@@ -267,7 +267,7 @@ export function Automatisation() {
                         initial={{ y: 30, opacity: 0 }}
                         animate={{ y: 0, opacity: 1 }}
                         transition={{ delay: 0.3, duration: 0.7 }}
-                        className="text-5xl md:text-6xl font-bold mb-6"
+                        className="text-4xl md:text-6xl font-bold mb-6"
                     >
                         <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
                             AUTOMATISATION

@@ -340,7 +340,7 @@ export function Academie() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.5 }}
-            className='py-10'
+            className='pt-20'
         >
             {/* Hero Section avec animations améliorées */}
             <motion.div 
@@ -924,7 +924,7 @@ export function Academie() {
                     whileInView={{ y: 0, opacity: 1 }}
                     viewport={{ once: true, margin: "-100px" }}
                     transition={{ duration: 0.7 }}
-                    className="mt-20 mb-16"
+                    className="mt-15 mb-10"
                 >
                     <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-3xl p-8 md:p-12 relative overflow-hidden">
                         {/* Effet de particules */}
@@ -1023,13 +1023,13 @@ export function Academie() {
                     whileInView={{ y: 0, opacity: 1 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.7 }}
-                    className="text-center mt-16 mb-20"
+                    className="text-center mt-10 mb-10"
                 >
                     <a href="https://wa.me/+237677843119?text=Bonjour%2C%20je%20souhaite%20m'inscrire%20à%20la%20prochaine%20session%20de%20la%20formation%20IA%20de%20BlancheNova%20Tech." target="_blank" rel="noopener noreferrer">
                     <motion.button 
                         whileHover={{ scale: 1.05, y: -5 }}
                         whileTap={{ scale: 0.95 }}
-                        className="group relative inline-flex items-center gap-3 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold py-5 px-10 rounded-full shadow-xl hover:shadow-2xl transform transition-all duration-300 text-lg overflow-hidden"
+                        className="group relative inline-flex items-center gap-3 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold py-2 px-6 mb-3 rounded-full shadow-xl hover:shadow-2xl transform transition-all duration-300 text-lg overflow-hidden"
                     >
                         {/* Effet de brillance sur le bouton */}
                         <motion.div

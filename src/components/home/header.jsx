@@ -48,16 +48,6 @@ export function Header({ onNavigate }) {
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
-    // const navLinks = [
-    //     { name: 'Accueil', id: 'accueil', icon: <Home className="w-4 h-4" /> },
-    //     { name: 'Académie IA', id: 'academie-ia', icon: <BookOpen className="w-4 h-4" /> },
-    //     { name: 'Automatisation', id: 'automatisation', icon: <Bot className="w-4 h-4" /> },
-    //     { name: 'IA Créative', id: 'ia-creative', icon: <Palette className="w-4 h-4" /> },
-    //     { name: 'Services IT', id: 'services-it', icon: <Server className="w-4 h-4" /> },
-    //     { name: 'Stage', id: 'stage', icon: <Users className="w-4 h-4" /> },
-    //     { name: 'Contact', id: 'contact', icon: <Mail className="w-4 h-4" /> }
-    // ];
-
     return (
         <motion.header
             initial={{ y: -100 }}

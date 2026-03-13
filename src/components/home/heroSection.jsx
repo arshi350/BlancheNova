@@ -4,7 +4,7 @@ import { Sparkles, ArrowRight, CheckCircle, TrendingUp, Users, Zap } from 'lucid
 
 export function Hero() {
     return (
-        <section className="relative min-h-screen pt-30 flex items-center justify-center overflow-hidden bg-gradient-to-br from-blue-50 via-white to-purple-50">
+        <section className="relative min-h-screen pt-43 flex items-center justify-center overflow-hidden bg-gradient-to-br from-blue-50 via-white to-purple-50">
             {/* Éléments de fond décoratifs */}
             <div className="absolute inset-0 overflow-hidden">
                 <div className="absolute -top-40 -right-40 w-80 h-80 bg-blue-200 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob"></div>
@@ -78,7 +78,7 @@ export function Hero() {
                                 "Solutions d'automatisation sur mesure",
                                 "Accompagnement personnalisé"
                             ].map((item, idx) => (
-                                <div key={idx} className="flex items-center gap-2 justify-center lg:justify-start">
+                                <div key={idx} className="flex items-center gap-2 ml-8 lg:justify-start">
                                     <CheckCircle className="w-5 h-5 text-blue-600" />
                                     <span className="text-gray-600">{item}</span>
                                 </div>
@@ -90,7 +90,7 @@ export function Hero() {
                             initial={{ opacity: 0, y: 30 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: 0.6 }}
-                            className="flex flex-col sm:flex-row gap-4 mt-8 justify-center lg:justify-start"
+                            className="flex flex-col sm:flex-row items-center gap-4 mt-8 justify-center lg:justify-start"
                         >
                             <a href="https://wa.me/237696185770?text=Bonjour%2C%20je%20souhaite%20m'inscrire%20à%20la%20formation%20IA%20de%20BlancheNova%20Tech." target="_blank" rel="noopener noreferrer">
                                 <motion.button
@@ -190,7 +190,7 @@ export function Hero() {
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
                             transition={{ delay: 0.8 }}
-                            className="flex justify-center gap-3 mt-6"
+                            className="flex justify-center gap-3 mt-15"
                         >
                             {['Python', 'TensorFlow', 'PyTorch', 'OpenAI'].map((tech, idx) => (
                                 <span key={idx} className="px-3 py-1 bg-white rounded-full text-xs font-semibold text-gray-600 shadow-sm border border-gray-200">

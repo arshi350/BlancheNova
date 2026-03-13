@@ -292,7 +292,7 @@ export function Contact() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.5 }}
-            className="min-h-screen bg-gradient-to-b pt-10 from-red-50 via-white to-white overflow-hidden"
+            className="min-h-screen bg-gradient-to-b pt-25 from-red-50 via-white to-white overflow-hidden"
         >
             {/* Notifications Email */}
             <AnimatePresence>

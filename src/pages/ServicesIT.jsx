@@ -331,7 +331,7 @@ export function ServicesIT() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.5 }}
-            className="min-h-screen bg-gradient-to-b from-gray-50 pt-10 to-white"
+            className="min-h-screen bg-gradient-to-b from-gray-50 pt-20 to-white"
         >
             {/* Hero Section avec effet de réseau animé */}
             <motion.div 
@@ -405,7 +405,7 @@ export function ServicesIT() {
                             initial={{ y: 30, opacity: 0 }}
                             animate={{ y: 0, opacity: 1 }}
                             transition={{ delay: 0.3, duration: 0.7 }}
-                            className="text-5xl md:text-6xl font-bold text-white mb-6"
+                            className="text-4xl md:text-6xl font-bold text-white mb-6"
                         >
                             SERVICES 
                             <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-300 to-cyan-300"> INFORMATIQUES</span>

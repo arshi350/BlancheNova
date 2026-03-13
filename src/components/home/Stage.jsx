@@ -65,7 +65,7 @@ export function Stage() {
             color: "blue",
             duration: "4-6 mois",
             level: "Bac+3/4",
-            spots: 4,
+            spots: 6,
             category: "reseau",
             gradient: "from-blue-600 to-cyan-600"
         },
@@ -83,7 +83,7 @@ export function Stage() {
             color: "green",
             duration: "6 mois",
             level: "Bac+5",
-            spots: 3,
+            spots: 7,
             category: "encadrement",
             gradient: "from-green-600 to-emerald-600"
         },
@@ -311,7 +311,7 @@ export function Stage() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.5 }}
-            className="min-h-screen bg-gradient-to-b py-10 from-indigo-50 via-white to-white"
+            className="min-h-screen bg-gradient-to-b mt-15 pt-10 from-indigo-50 via-white to-white"
         >
             {/* Hero Section avec animations */}
             <motion.div 
@@ -373,7 +373,7 @@ export function Stage() {
                             className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm text-white px-4 py-2 rounded-full mb-6 border border-white/30"
                         >
                             <Sparkles className="w-4 h-4" />
-                            <span className="text-sm font-semibold">PROGRAMME STAGE 2024</span>
+                            <span className="text-sm font-semibold">PROGRAMME STAGE 2026</span>
                         </motion.div>
 
                         <motion.h1 
@@ -833,7 +833,7 @@ export function Stage() {
                         <motion.button 
                             whileHover={{ scale: 1.05, y: -5 }}
                             whileTap={{ scale: 0.95 }}
-                            className="group relative inline-flex items-center gap-3 bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white font-bold py-5 px-12 rounded-full shadow-xl hover:shadow-2xl transform transition-all duration-300 text-xl overflow-hidden"
+                            className="group relative inline-flex items-center gap-3 bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white font-bold py-5 px-5 rounded-full shadow-xl hover:shadow-2xl transform transition-all duration-300 text-xl overflow-hidden"
                         >
                             {/* Effet de brillance */}
                             <motion.div

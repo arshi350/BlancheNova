@@ -251,7 +251,7 @@ export function IaCreative() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.5 }}
-            className="relative min-h-screen bg-gradient-to-b from-white via-purple-50/30 to-pink-50/30 overflow-hidden"
+            className="relative mt-35 min-h-screen bg-gradient-to-b from-white via-purple-50/30 to-pink-50/30 overflow-hidden"
         >
             {/* Éléments décoratifs animés */}
             <div className="absolute inset-0 overflow-hidden">
@@ -259,7 +259,7 @@ export function IaCreative() {
                     variants={floatingVariants}
                     initial="initial"
                     animate="animate"
-                    className="absolute -top-40 -right-40 w-80 h-80 bg-purple-200 rounded-full mix-blend-multiply filter blur-3xl opacity-20"
+                    className="absolute top-40 -right-40 w-80 h-80 bg-purple-200 rounded-full mix-blend-multiply filter blur-3xl opacity-20"
                 />
                 <motion.div 
                     variants={floatingVariants}
@@ -301,7 +301,7 @@ export function IaCreative() {
                 ))}
             </div>
 
-            <div className="relative max-w-7xl mx-auto px-4 py-30">
+            <div className="relative max-w-7xl mx-auto px-4 py-10">
                 {/* Header avec badge premium et animations */}
                 <motion.div 
                     initial={{ y: 50, opacity: 0 }}
@@ -323,7 +323,7 @@ export function IaCreative() {
                         initial={{ y: 30, opacity: 0 }}
                         animate={{ y: 0, opacity: 1 }}
                         transition={{ delay: 0.3, duration: 0.7 }}
-                        className="text-6xl md:text-7xl font-bold mb-6"
+                        className="text-5xl md:text-7xl font-bold mb-6"
                     >
                         <span className="bg-gradient-to-r from-purple-600 via-pink-600 to-orange-600 bg-clip-text text-transparent">
                             IA CRÉATIVE
