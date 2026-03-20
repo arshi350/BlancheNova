@@ -30,11 +30,11 @@ export function useForm() {
 
 			const templateParams = {
 				name: formData.name,
-				email: formData.email,
+				email: 'blanchenova01@gmail.com',
 				service: formData.services || 'Non spécifié',
 				message: formData.message,
-				to_email: 'arelletagne@gmail.com',//arelletagne@gmail.com
-				reply_to: formData.email
+				to_email: 'blanchenova01@gmail.com',//arelletagne@gmail.com
+				reply_to: 'blanchenova01@gmail.com'
 			};
 
 			// Envoi de l'email avec EmailJS

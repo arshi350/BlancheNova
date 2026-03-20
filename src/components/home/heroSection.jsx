@@ -29,16 +29,7 @@ export function Hero() {
                         transition={{ duration: 0.6 }}
                         className="flex-1 text-center lg:text-left"
                     >
-                        {/* Badge "by Arelle" amélioré */}
-                        <motion.div
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ delay: 0.2 }}
-                            className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-100 to-purple-100 px-4 py-2 rounded-full border border-blue-200 mb-6"
-                        >
-                            <Sparkles className="w-4 h-4 text-blue-600" />
-                            <span className="text-sm font-semibold text-blue-800">by Arelle</span>
-                        </motion.div>
+                       
 
                         {/* Titre principal */}
                         <motion.h1 

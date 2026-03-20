@@ -86,7 +86,7 @@ export function Contact() {
         const body = `Bonjour l'équipe Newsafrix, Je vous contacte suite à ma visite sur votre site web. Cordialement.`;
         
         // Ouvrir le client mail par défaut
-        openMailClient('arelletagne@gmail.com', subject, body);
+        openMailClient('blanchenova01@gmail.com', subject, body);
         
         // Afficher un message de confirmation
         setEmailStatus('mailto');
@@ -95,7 +95,7 @@ export function Contact() {
 
     // Fonction alternative pour ouvrir Gmail directement
     const openGmailCompose = () => {
-        const to = 'arelletagne@gmail.com';
+        const to = 'blanchenova01@gmail.com';
         const subject = encodeURIComponent("Demande d'information depuis le site Newsafrix");
         const body = encodeURIComponent(`Bonjour l'équipe Newsafrix, Je vous contacte suite à ma visite sur votre site web. Cordialement.`);
         window.open(`https://mail.google.com/mail/?view=cm&fs=1&to=${to}&su=${subject}&body=${body}`, '_blank');
@@ -105,17 +105,17 @@ export function Contact() {
         {
             icon: MapPin,
             title: "Adresse",
-            content: "Yaoundé, Cameroun",
-            detail: "Quartier Awae,",
+            content: "Awae, Yaoundé, Cameroun",
+            detail: "1er entrée carrière venant de Awae avant la station Neptune sur le tronçon carrefour monti",
             color: "red",
-            action: "https://maps.google.com",
+            action: "https://maps.google.com/?q=Awae+Yaounde+Cameroun",
             gradient: "from-red-500 to-pink-500",
-            onClick: () => window.open('https://maps.google.com', '_blank')
+            onClick: () => window.open('https://maps.google.com/?q=Awae+Yaounde+Cameroun', '_blank')
         },
         {
             icon: Mail,
             title: "Email",
-            content: "arelletagne@gmail.com",
+            content: "blanchenova01@gmail.com",
             detail: "Cliquez pour nous écrire",
             color: "blue",
             action: "#", // Changé pour éviter la redirection par défaut
@@ -161,7 +161,7 @@ export function Contact() {
         "Programme Stage"
     ];
 
-    // Variants d'animation (inchangés)
+    // Variants d'animation
     const containerVariants = {
         hidden: { opacity: 0 },
         visible: {
@@ -333,7 +333,7 @@ export function Contact() {
                 )}
             </AnimatePresence>
 
-            {/* Particules décoratives (inchangées) */}
+            {/* Particules décoratives */}
             <div className="fixed inset-0 pointer-events-none">
                 {[...Array(30)].map((_, i) => (
                     <motion.div
@@ -359,14 +359,13 @@ export function Contact() {
                 ))}
             </div>
 
-            {/* Hero Section (inchangée) */}
+            {/* Hero Section */}
             <motion.div 
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.8 }}
                 className="relative overflow-hidden bg-gradient-to-r from-red-600 to-red-800 py-20"
             >
-                {/* ... (contenu inchangé) ... */}
                 <motion.div 
                     variants={floatingVariants}
                     initial="initial"
@@ -502,7 +501,7 @@ export function Contact() {
                     })}
                 </motion.div>
 
-                {/* Formulaire et carte (inchangé) */}
+                {/* Formulaire et carte */}
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-16">
                     
                     {/* Formulaire de contact avec EmailJS */}
@@ -531,7 +530,7 @@ export function Contact() {
                                     <input
                                         type="text"
                                         name="name"
-                                        value={formData.nom}
+                                        value={formData.name}
                                         onChange={handleChange}
                                         onFocus={() => setFocusedField('nom')}
                                         onBlur={() => setFocusedField(null)}
@@ -581,7 +580,7 @@ export function Contact() {
                                         onChange={(e) => setservice(e.target.value)}
                                         onFocus={() => setFocusedField('service')}
                                         onBlur={() => setFocusedField(null)}
-                                        name='object'
+                                        name='services'
                                         className="w-full pl-10 pr-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-red-500 focus:border-transparent transition-all duration-300 appearance-none bg-white"
                                     >
                                         <option value="">Sélectionnez un service</option>
@@ -681,7 +680,7 @@ export function Contact() {
                         </form>
                     </motion.div>
 
-                    {/* Sidebar (inchangée) */}
+                    {/* Sidebar */}
                     <motion.div 
                         initial={{ x: 50, opacity: 0 }}
                         whileInView={{ x: 0, opacity: 1 }}
@@ -721,7 +720,7 @@ export function Contact() {
                         <motion.div 
                             whileHover={{ y: -5 }}
                             className="bg-white rounded-2xl shadow-xl p-6 cursor-pointer"
-                            onClick={() => window.open('https://maps.google.com', '_blank')}
+                            onClick={() => window.open('https://maps.google.com/?q=Awae+Yaounde+Cameroun', '_blank')}
                         >
                             <div className="flex items-center gap-3 mb-4">
                                 <motion.div 
@@ -734,11 +733,11 @@ export function Contact() {
                                 <h3 className="font-semibold text-gray-800">Notre localisation</h3>
                             </div>
                             <p className="text-gray-600 mb-2">
-                                <span className="font-medium">Yaoundé, Cameroun</span>
+                                <span className="font-medium">Awae, Yaoundé, Cameroun</span>
                             </p>
                             <p className="text-sm text-gray-500 mb-4">
-                                Quartier Mvan, Rue 3.456<br />
-                                Immeuble ABC, 3ème étage
+                                1er entrée carrière venant de Awae<br />
+                                Avant la station Neptune sur le tronçon carrefour monti
                             </p>
                             <motion.div
                                 whileHover={{ x: 5 }}
@@ -801,7 +800,7 @@ export function Contact() {
                     </motion.div>
                 </div>
 
-                {/* Carte interactive */}
+                {/* Carte interactive - Pointant vers Awae */}
                 <motion.div 
                     initial={{ y: 50, opacity: 0 }}
                     whileInView={{ y: 0, opacity: 1 }}
@@ -811,7 +810,7 @@ export function Contact() {
                 >
                     <div className="bg-gray-200 rounded-2xl h-96 relative overflow-hidden">
                         <iframe
-                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3989.758269503576!2d11.50204871475395!3d3.866666996924641!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x108bc0e4c2e5c6b7%3A0x123456789abcdef!2sYaound%C3%A9%2C%20Cameroun!5e0!3m2!1sfr!2sfr!4v1620000000000!5m2!1sfr!2sfr"
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.566311479802!2d11.516309!3d3.873389!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x108bcf9b5ffb4b9b%3A0x4b7f8e5d2e9c5a1f!2sAwae%2C%20Yaound%C3%A9%2C%20Cameroun!5e0!3m2!1sfr!2sfr!4v1700000000000!5m2!1sfr!2sfr"
                             width="100%"
                             height="100%"
                             style={{ border: 0 }}
@@ -819,6 +818,7 @@ export function Contact() {
                             loading="lazy"
                             referrerPolicy="no-referrer-when-downgrade"
                             className="rounded-2xl"
+                            title="Carte de localisation - Awae, Yaoundé, Cameroun"
                         ></iframe>
                         
                         <motion.div 
@@ -827,13 +827,13 @@ export function Contact() {
                             viewport={{ once: true }}
                             transition={{ delay: 0.5 }}
                             className="absolute bottom-4 left-4 bg-white rounded-lg shadow-lg p-4 cursor-pointer"
-                            onClick={() => window.open('https://maps.google.com', '_blank')}
+                            onClick={() => window.open('https://maps.google.com/?q=Awae+Yaounde+Cameroun', '_blank')}
                         >
                             <div className="flex items-center gap-2">
                                 <MapPin className="w-5 h-5 text-red-600" />
-                                <span className="font-medium text-gray-800">Yaoundé, Cameroun</span>
+                                <span className="font-medium text-gray-800">Awae, Yaoundé - Cameroun</span>
                             </div>
-                            <p className="text-sm text-gray-600 mt-1">Quartier Mvan - Rue 3.456</p>
+                            <p className="text-sm text-gray-600 mt-1">1er entrée carrière venant de Awae</p>
                         </motion.div>
                     </div>
                 </motion.div>
