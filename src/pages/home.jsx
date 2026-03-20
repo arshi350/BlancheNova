@@ -4,6 +4,7 @@ import { Hero } from "../components/home/heroSection"
 import { AboutUs } from "../components/home/aboutUs"
 import { Expertise } from "../components/home/expertise"
 import { Footer } from "../components/home/footer"
+import { Services } from "../components/home/services"
 
 export function Home({ onNavigate }) {
     return (
@@ -13,6 +14,7 @@ export function Home({ onNavigate }) {
                     <Hero/>
                     <AboutUs/>
                     <Expertise onNavigate={onNavigate}/>
+                    <Services/>
                 </section>
             </section>
         </>

@@ -118,6 +118,23 @@ export function ServicesIT() {
             stats: "Sur mesure",
             bgImage: "bg-gradient-to-br from-red-50 to-rose-50",
             gradient: "from-red-600 to-rose-600"
+        },
+        {
+            id:6,
+            title:"Cyber Sécurité ",
+            description:"Protection avancée de vos systèmes contre les menaces cybernétiques.",
+            icon: Shield,
+            features:[
+                "Protection contre les attaques DDoS",
+                "Détection et réponse aux incidents",
+                "Audit de sécurité",
+                "Formation à la sensibilisation à la sécurité"
+            ],
+            category:"securite",
+            color:"blue",
+            stats:"",
+            bgImage:"",
+            gradient:"from-blue-600 to-cyan-600"
         }
     ];
 
